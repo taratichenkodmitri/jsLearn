@@ -2,26 +2,47 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Random color example — event handler property</title>
+    <title>Useful event target example</title>
     <style>
-      button {
-        margin: 10px;
+      .tile {
+        height: 100px;
+        width: 25%;
+        float: left;
       }
     </style>
   </head>
   <body>
-    <button>Change color</button>
-    <script>
-      const btn = document.querySelector('button');
+    <div id="container">
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+   </div>
 
+    <script>
       function random(number) {
         return Math.floor(Math.random()*number);
       }
 
-      btn.addEventListener('click', function() {
-      var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
-        document.body.style.backgroundColor = rndCol;
-      });
+      function bgChange() {
+        const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+        return rndCol;
+      }
+
+      const container = document.querySelector('#container');
+      container.addEventListener('click', event => event.target.style.backgroundColor = bgChange());
     </script>
   </body>
 </html>
