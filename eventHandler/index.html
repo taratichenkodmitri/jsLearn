@@ -18,12 +18,10 @@
         return Math.floor(Math.random()*number);
       }
 
-      function bgChange() {
-        const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+      btn.addEventListener('click', function() {
+      var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
         document.body.style.backgroundColor = rndCol;
-      }
-
-      btn.onblur = bgChange;
+      });
     </script>
   </body>
 </html>
