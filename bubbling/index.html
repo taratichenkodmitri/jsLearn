@@ -59,8 +59,11 @@
 
       const video = document.querySelector('video');
 
-      video.addEventListener('click', () => video.play());
-
+       video.addEventListener('click', e => {
+        e.stopPropagation();
+        video.play();
+      });
+       
     </script>
   </body>
 </html>
