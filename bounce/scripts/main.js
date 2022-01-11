@@ -4,6 +4,8 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width = window.innerWidth;
 const height = canvas.height = window.innerHeight;
 
+var balls = [];
+
 function random(min, max) {
   const num = Math.floor(Math.random() * (max - min + 1)) + min;
   return num;
@@ -19,13 +21,16 @@ function Ball(x, y, velX, velY, color, size){
 }
 
 Ball.prototype.draw = function(){
+
   ctx.beginPath();
   ctx.fillStyle = this.color;
   ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
   ctx.fill();
+
 };
 
 Ball.prototype.update = function(){
+
   if ((this.x + this.size) >= width) {
     this.velX = -(this.velX);
   }
@@ -44,8 +49,36 @@ Ball.prototype.update = function(){
 
   this.x += this.velX;
   this.y += this.velY; 
+
 };
 
-var ball = new Ball(50, 100, 4, 4, "blue", 10);
+function run(){
 
-ball.draw()
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+  ctx.fillRect(0, 0, width, height);
+
+  while(balls.length < 25){
+
+    var ball = new Ball(
+      random(0,width),
+      random(0,height),
+      random(-7,7),
+      random(-7,7),
+      'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
+      random(10,20)
+    );
+    balls.push(ball);
+  }
+
+  for(var ball of balls){
+
+    ball.draw();
+    ball.update();
+
+  }
+
+  requestAnimationFrame(run);
+
+}
+
+run();
